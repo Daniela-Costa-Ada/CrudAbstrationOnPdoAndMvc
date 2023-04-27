@@ -48,27 +48,72 @@ class Crud
     {
         $this->supplier = (new Supplier())->findById($id);
         $this->supplier->name = "mostrando como funciona";
-        echo 'oi';
         $this->supplier->save();
+    }
+    public function updateProduct(int $id)
+    {
+        $this->product = (new Product())->findById($id);
+        $this->product->product_name = "microfone";
+        $this->product->save();
     }
     public function deleteSupplier( int $id) {
         $this->supplier = (new Supplier())->findById($id);
         if($this->supplier) {
             $this->supplier->destroy();
-            var_dump("Deletado funciona o delete");
+            echo "Fornecedor deletado!";
         } else {
-            var_dump("usuario nao existe");
+            echo"Fornecedor nao existe";
         }
     }
-    public function read(){
+
+    public function deleteProduct( int $id) {
+        $this->product = (new Product())->findById($id);
+        if($this->product) {
+            $this->product->destroy();
+            $this->idd($id);
+            echo "Produto deletado!";
+        } else {
+            echo"Produto nao existe";
+        }
+    }
+    public function deleteProductSuplier(int $id)
+    {
+
+            $this->products_supplier = (new Products_supplier())->findById($id);
+            if($this->products_supplier) {
+                $this->products_supplier->destroy();
+                echo "deletado!";
+            } else {
+                echo"nao existe";
+            }
+
+
+
+    }
+    public function idd(int $idProduto) {
+        $this->products_supplier = new Products_supplier();
+        $list = $this->products_supplier->find()->fetch(true);
+        foreach ($list as $supplierItem) {
+            if ($idProduto == $supplierItem->data()->id_product )
+            {
+               $this->deleteProductSuplier( $supplierItem->data()->id);
+            }
+//            echo "IDproduto: ", $supplierItem->data()->id_product, ", ";
+//            echo "id: ", $supplierItem->data()->id, ", ";
+//            echo "idsupplier: ", $supplierItem->data()->id_suppliers, ", ";
+//
+//            echo "Data de Cadastro: ", $supplierItem->data()->registrationDate, ", ";
+//            return $supplierItem->data()->id;
+        }
+    }
+
+    public function read() {
         $this->supplier = new Supplier();
         $list = $this->supplier->find()->fetch(true);
-        //var_dump($list);
         foreach ($list as $supplierItem) {
             echo "ID: ", $supplierItem->data()->id, ", ";
             echo "Nome: ", $supplierItem->data()->name, ", ";
-            echo "Nome: ", $supplierItem->data()->registration_date, ", ";
-            echo "/funciona o read/ ";
+            echo "Data de Cadastro: ", $supplierItem->data()->registrationDate, ", ";
         }
     }
 }

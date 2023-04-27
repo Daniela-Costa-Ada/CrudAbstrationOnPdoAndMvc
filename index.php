@@ -26,5 +26,9 @@ $crud->read();
 //$crud->addSupplier();
 //$crud->addProduct();
 //$crud->addProductSuppliers();
+//$crud->updateProduct(12);
+$crud->deleteProduct(30);
+//$crud->deleteProductSuplier(10);
+//$crud->idd(27);
 
 ?>

@@ -10,3 +10,4 @@ $crud->addSupplier($_POST["fornecedor"]);
 $crud->addProduct($_POST["produto"]);
 $crud->addProductSuppliers($_POST["valor"]);
 
+
