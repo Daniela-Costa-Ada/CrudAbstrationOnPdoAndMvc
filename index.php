@@ -8,27 +8,16 @@
     <title>Product and Suppliers</title>
 </head>
 <body>
-<form action="showsdata.php" method="post">
-    Produto: <input type=text name=produto><br>
-    Fornecedor: <input type=text name=fornecedor><br>
-    Valor: <input type=text name=valor><br>
-    <input type=submit value="OK">
-</form>
+<h1> Adicione produto, fornecedor e valor </h1>
+<!--<form action="showsdata.php" method="post">-->
+<!--    Produto: <input type=text name=produto><br>-->
+<!--    Fornecedor: <input type=text name=fornecedor><br>-->
+<!--    Valor: <input type=text name=valor><br>-->
+<!--    <input type=submit value="OK">-->
+<!--</form>-->
 </html>
-<h1> Teste</h1>
 <?php
 require __DIR__ ."/vendor/autoload.php";
 $crud = new Source\Crud\Crud();
-
-//$crud->updateSupplier(15);
-//$crud->deleteSupplier(22);
-$crud->read();
-//$crud->addSupplier();
-//$crud->addProduct();
-//$crud->addProductSuppliers();
-//$crud->updateProduct(12);
-$crud->deleteProduct(30);
-//$crud->deleteProductSuplier(10);
-//$crud->idd(27);
-
+//$crud->updatePriceProductSuppliers(36);
 ?>
