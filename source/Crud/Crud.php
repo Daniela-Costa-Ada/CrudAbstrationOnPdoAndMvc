@@ -34,13 +34,14 @@ class Crud
     public function updateSupplier(int $id)
     {
         $this->supplier = (new Supplier())->findById($id);
-        $this->supplier->name = "microsoft";
+        $this->supplier->name = "Apple";
         $this->supplier->save();
     }
     public function deleteSupplier( int $id) {
         $this->supplier = (new Supplier())->findById($id);
         if($this->supplier) {
             $this->supplier->destroy();
+            $this->getIdProductSupplierS($id);
             echo "Fornecedor deletado!";
         } else {
             echo "Fornecedor nao existe";
@@ -55,7 +56,7 @@ class Crud
     public function updateProduct(int $id)
     {
         $this->product = (new Product())->findById($id);
-        $this->product->product_name = "mesa";
+        $this->product->product_name = "placa de video";
         $this->product->save();
     }
 
@@ -87,7 +88,7 @@ class Crud
     {
         $this->products_supplier = (new Products_supplier())->findById($id);
         echo "Preço antigo: " . $this->products_supplier->price;
-        $this->products_supplier->price = 546.67;
+        $this->products_supplier->price = 90.26;
         $this->products_supplier->save();
         echo "Preço novo: " . $this->products_supplier->price;
 
@@ -116,6 +117,17 @@ class Crud
         $list = $this->products_supplier->find()->fetch(true);
         foreach ($list as $products_supplierItem) {
             if ($idProduto == $products_supplierItem->data()->id_product )
+            {
+                $this->deleteProductSuplier($products_supplierItem->data()->id);
+            }
+        }
+    }
+
+    public function getIdProductSupplierS(int $idSuppliers) {
+        $this->products_supplier = new Products_supplier();
+        $list = $this->products_supplier->find()->fetch(true);
+        foreach ($list as $products_supplierItem) {
+            if ($idSuppliers == $products_supplierItem->data()->id_suppliers)
             {
                 $this->deleteProductSuplier($products_supplierItem->data()->id);
             }
