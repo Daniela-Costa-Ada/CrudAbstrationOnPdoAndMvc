@@ -63,7 +63,7 @@ class Crud
     /**
      * Delete the products tables
      * it also deletes the relationship of this product with the supplier because if a product no longer exists,
-     * there is alsorelationship with the supplier but this can be refactored according to the idea of the business rule
+     * there is also relationship with the supplier but this can be refactored according to the idea of the business rule
      */
     public function deleteProduct( int $id) {
         $this->product = (new Product())->findById($id);
